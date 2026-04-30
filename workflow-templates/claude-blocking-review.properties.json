@@ -1,0 +1,6 @@
+{
+  "name": "Claude Blocking Review",
+  "description": "Blocks PR merges when Claude finds bugs, reliability regressions, security issues, or data-loss risks. Requires CLAUDE_CODE_OAUTH_TOKEN secret.",
+  "iconName": "shield-check",
+  "categories": ["code-review", "security"]
+}
