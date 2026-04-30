@@ -21,7 +21,7 @@ There is no build system, test suite, or application code. This repo contains on
 
 ## Key details
 
-- The Claude Blocking Review workflow requires a `CLAUDE_CODE_OAUTH_TOKEN` secret. Provision at the org level so it's available to every repo: `gh secret set CLAUDE_CODE_OAUTH_TOKEN --org nightowlstudiollc --visibility all`.
+- The Claude Blocking Review workflow requires a `CLAUDE_CODE_OAUTH_TOKEN` secret on the **consuming repo**. The token is provisioned per-repo by Claude Code CLI's `/install-github-app` slash command — there is no org-level installation scope. The expectation is that every repo Andrew owns already has the GitHub App installed; missing-secret cases are remediation gaps surfaced by `claude-review-audit.sh` in `smartwatermelon/github-workflows`.
 - The actual reusable-workflow logic lives in `smartwatermelon/github-workflows`, not here. This repo only holds the picker stub.
 - Workflow templates are a **one-time scaffold** — selecting one copies the file into the consumer repo. Future edits here do not propagate. Live propagation happens via the `uses: ...@v3.0.0` line in the consumer's copy plus Dependabot bumps.
 - Profile rendering requires this repo to be **public**. Workflow templates work in either public or private `.github` repos.
