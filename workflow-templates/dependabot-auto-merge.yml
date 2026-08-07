@@ -2,7 +2,14 @@ name: Dependabot Auto-Merge
 
 # Caller stub for the reusable `dependabot-auto-merge` workflow. Approves
 # and auto-merges Dependabot PRs for patch and minor version updates once
-# CI passes; major-version bumps are left open for manual review.
+# CI passes; major-version bumps are left open for manual review. This
+# stub passes no `with:` inputs -- the reusable workflow declares no
+# `inputs:` today, so every behavior (the dependabot[bot]-actor gate, the
+# patch/minor scope, the squash-merge strategy) is governed entirely by
+# its defaults. The actor gate in particular is NOT visible in this file
+# -- it lives inside the reusable workflow itself; see
+# smartwatermelon/github-workflows/.github/workflows/dependabot-auto-merge.yml
+# to audit it directly.
 #
 # Requires `can_approve_pull_request_reviews: true` in this repo's Actions
 # workflow permissions (Settings -> Actions -> General -> Workflow
@@ -21,13 +28,18 @@ name: Dependabot Auto-Merge
 # this file uses pull_request_target and the no-checkout property is
 # its core safety invariant.
 #
-# TEMPORARY: pinned to the smartwatermelon/github-workflows commit SHA
-# below because the dependabot-auto-merge-v1 tag does not exist yet --
-# it is created ~1 minute after that repo's PR #96 merges (matching this
-# fleet's established tag/release convention). Follow-up: once the tag
-# exists, repoint this stub at
-# @dependabot-auto-merge-v1 (or a pinned @dependabot-auto-merge-v1.0.0)
-# and remove this comment block.
+# Pinned to the floating `dependabot-auto-merge-v1` tag (not a fixed
+# commit SHA), a deliberate, accepted tradeoff for this template -- not
+# an oversight. This workflow runs under pull_request_target with
+# contents:write / pull-requests:write, so a floating tag does put trust
+# in whoever can push tags to smartwatermelon/github-workflows (today:
+# repo owner only) to never move it to something malicious or broken.
+# In exchange, bug fixes and hardening land fleet-wide automatically,
+# matching how claude-blocking-review.yml@v3 already behaves -- the
+# same tradeoff this fleet has already made and lived with for the
+# review gate, extended here to the merge-automation workflow. Repos
+# that want a stricter, audited pin instead of this default can repoint
+# their own copy at `@dependabot-auto-merge-v1.0.0`.
 
 on:
   pull_request_target:
@@ -39,4 +51,4 @@ permissions:
 
 jobs:
   dependabot-auto-merge:
-    uses: smartwatermelon/github-workflows/.github/workflows/dependabot-auto-merge.yml@ad3f0ec080ad5b119f2359bf42de6623c4730544 # TODO: repoint to @dependabot-auto-merge-v1 once cut
+    uses: smartwatermelon/github-workflows/.github/workflows/dependabot-auto-merge.yml@dependabot-auto-merge-v1
