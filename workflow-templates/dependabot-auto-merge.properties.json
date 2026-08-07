@@ -1,0 +1,6 @@
+{
+  "name": "Dependabot Auto-Merge",
+  "description": "Approves and auto-merges Dependabot PRs for patch and minor version updates once CI passes. Major-version bumps are left open for manual review. Requires can_approve_pull_request_reviews enabled for this repo.",
+  "iconName": "git-merge",
+  "categories": ["automation", "dependencies"]
+}
