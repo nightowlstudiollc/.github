@@ -4,6 +4,17 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+# Required by the reusable workflow's run-review job, which declares
+# id-token/pull-requests/issues write. A called workflow can only downgrade
+# the caller's token, never escalate it, and this repo's
+# default_workflow_permissions is "read" -- so omitting this block makes
+# every run fail at config time with startup_failure and zero jobs.
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  id-token: write
+
 jobs:
   claude-review:
     uses: smartwatermelon/github-workflows/.github/workflows/claude-blocking-review.yml@v3.2.1
