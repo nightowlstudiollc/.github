@@ -7,7 +7,6 @@ Organization-level defaults for `nightowlstudiollc` repositories.
 - **`profile/README.md`** — Org landing page rendered at <https://github.com/nightowlstudiollc>
 - **`workflow-templates/dependabot-auto-merge.yml`** — Workflow template that auto-merges patch + minor Dependabot bumps
 - **`.github/dependabot.yml`** — Dependabot config for this repo's own GitHub Actions pins
-- **`.github/workflows/claude.yml`** — `@claude` mention handler for issues/PRs in this repo
 
 ## Usage
 

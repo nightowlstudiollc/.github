@@ -9,7 +9,6 @@ This is the **`.github` organization-level repository** for the `nightowlstudiol
 - **`profile/README.md`** — Org landing page rendered at <https://github.com/nightowlstudiollc>
 - **`workflow-templates/`** — Reusable workflow templates available in the Actions tab of any org repo
 - **`.github/dependabot.yml`** — Dependabot config for this repo's own actions
-- **`.github/workflows/claude.yml`** — `@claude` mention handler for issues/PRs in this repo
 
 ## Architecture
 
